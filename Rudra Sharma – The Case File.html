@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rudra Sharma | The Case File</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#120b0a;--panel:rgba(26,16,14,.88);--p2:rgba(48,30,25,.9);--ink:#efe3cc;--mut:#b09a80;--red:#c0281f;--gold:#d2a85a;--line:#4a2f27;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root[data-theme="light"]{--bg:#e6d8b8;--panel:rgba(247,238,218,.92);--p2:rgba(232,216,184,.95);--ink:#2b1a13;--mut:#6d5443;--red:#a51c14;--gold:#8a6420;--line:#bda47c}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Cormorant Garamond",Georgia,serif;font-size:19px;min-height:100vh}
+h1,h2,h3,.cin{font-family:Cinzel,Georgia,serif}
+#bg{position:fixed;inset:0;z-index:0}
+#vig{position:fixed;inset:0;z-index:2;pointer-events:none;background:radial-gradient(circle 340px at var(--mx,50%) var(--my,40%),transparent 0,rgba(0,0,0,.55) 100%)}
+:root[data-theme="light"] #vig{background:radial-gradient(circle 420px at var(--mx,50%) var(--my,40%),transparent 0,rgba(60,30,10,.28) 100%)}
+.hud{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;gap:12px;align-items:center;padding:10px 16px;background:var(--panel);border-bottom:2px solid var(--red);backdrop-filter:blur(6px)}
+.logo{font-family:Cinzel,serif;font-weight:900;letter-spacing:.18em;font-size:15px}.logo b{color:var(--red)}
+.xp{flex:1;min-width:80px}.xp small{color:var(--mut);display:block;font-size:14px;letter-spacing:.08em}
+.bar{height:8px;background:var(--p2);border:1px solid var(--line);overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--red),var(--gold));width:0;transition:width .8s}
+.btn{font:600 15px Cinzel,serif;letter-spacing:.06em;color:var(--ink);background:transparent;border:1px solid var(--gold);padding:9px 14px;cursor:pointer;text-decoration:none;display:inline-block;transition:.2s}
+.btn:hover{background:var(--red);border-color:var(--red);color:#fff;transform:translateY(-2px)}
+.wrap{position:relative;z-index:1;display:flex;gap:18px;max-width:1120px;margin:0 auto;padding:18px}
+nav{display:flex;flex-direction:column;gap:6px;width:190px;flex:none;position:sticky;top:80px;align-self:flex-start}
+nav button{font:600 13px Cinzel,serif;letter-spacing:.08em;text-align:left;color:var(--mut);background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--line);padding:11px;cursor:pointer;transition:.25s}
+nav button b{color:var(--red);margin-right:8px}
+nav button.on,nav button:hover{color:var(--ink);border-left-color:var(--red);transform:translateX(6px)}
+main{flex:1;min-width:0}
+section{display:none;background:var(--panel);border:1px solid var(--line);padding:26px;position:relative;backdrop-filter:blur(4px)}
+section:before{content:"";position:absolute;top:-1px;left:-1px;width:70px;height:3px;background:var(--red)}
+section.on{display:block;animation:rise .6s}@keyframes rise{from{opacity:0;transform:translateY(16px);filter:blur(6px)}}
+h2{margin:0 0 6px;font-size:30px;letter-spacing:.06em;font-weight:700}h2 small{display:block;color:var(--red);font-size:13px;letter-spacing:.35em;margin-bottom:6px}
+.sub{color:var(--mut);font-style:italic;margin:0 0 18px}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.card{background:var(--p2);border:1px solid var(--line);padding:16px;position:relative;transition:.25s}
+.card:hover{border-color:var(--gold);transform:translateY(-4px)}
+.card h3{margin:0 0 6px;font-size:17px;letter-spacing:.05em}.card p{margin:0;color:var(--mut)}
+.stamp{position:absolute;top:10px;right:10px;border:2px solid var(--red);color:var(--red);font:700 11px Cinzel,serif;letter-spacing:.15em;padding:2px 6px;transform:rotate(6deg)}
+.tag{display:inline-block;font-size:14px;border:1px solid var(--gold);color:var(--gold);padding:0 8px;margin:10px 6px 0 0}
+.glitch{font:900 clamp(34px,7vw,66px)/1 Cinzel,serif;letter-spacing:.06em;margin:0;position:relative}
+.glitch:before,.glitch:after{content:attr(data-t);position:absolute;left:0;top:0;opacity:.7;mix-blend-mode:screen}
+.glitch:before{color:#ff2a1f;animation:gl 3s infinite steps(1)}.glitch:after{color:#2ad6ff;animation:gl 3.4s infinite steps(1) reverse}
+@keyframes gl{0%,92%{transform:none;clip-path:inset(0 0 100% 0)}93%{transform:translate(-4px,1px);clip-path:inset(20% 0 55% 0)}96%{transform:translate(4px,-2px);clip-path:inset(60% 0 10% 0)}100%{transform:none;clip-path:inset(0 0 100% 0)}}
+.sword{width:22px;height:70px;display:inline-block;vertical-align:middle;margin-right:14px}
+.facts{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;margin:18px 0}.facts dt{color:var(--red);font:600 13px Cinzel,serif;letter-spacing:.15em}.facts dd{margin:0}
+.skill{margin:12px 0}.skill div{display:flex;justify-content:space-between;font:600 13px Cinzel,serif;letter-spacing:.1em;margin-bottom:4px}
+.tl{border-left:2px solid var(--red);padding-left:18px;display:grid;gap:14px}
+.tl .card:before{content:"";position:absolute;left:-26px;top:20px;width:12px;height:12px;background:var(--bg);border:2px solid var(--red);transform:rotate(45deg)}
+.badges{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+.badge{text-align:center;background:var(--p2);border:1px solid var(--line);padding:16px 8px;transition:.25s}.badge:hover{border-color:var(--red);transform:rotate(-2deg) scale(1.04)}
+.badge .e{font-size:34px}.badge b{font:600 13px Cinzel,serif;letter-spacing:.06em;display:block;margin-top:6px}.badge small{color:var(--mut)}
+canvas#g{width:100%;max-width:520px;background:#0a0605;border:1px solid var(--red);touch-action:none;display:block}
+.boss{text-align:center}.boss .bar{max-width:380px;margin:14px auto;height:10px}.boss .bar i{background:var(--red);width:100%}
+.links{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:18px}
+.shake{animation:sh .3s}@keyframes sh{25%{transform:translate(-6px,3px)}75%{transform:translate(6px,-3px)}}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translate(-50%,140px);background:var(--red);color:#fff;font:700 14px Cinzel,serif;letter-spacing:.1em;padding:10px 20px;z-index:20;transition:transform .4s}.toast.s{transform:translate(-50%,0)}
+#intro{position:fixed;inset:0;z-index:50;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;cursor:pointer;transition:opacity 1.2s}
+#intro.out{opacity:0;pointer-events:none}
+#intro p{font:italic 500 clamp(20px,4vw,30px) "Cormorant Garamond",serif;color:#d9c9ac;min-height:2.6em;max-width:640px;margin:0}
+#intro small{position:absolute;bottom:calc(30px + env(safe-area-inset-bottom,0px));color:#7c6a55;font:500 12px Cinzel,serif;letter-spacing:.4em;animation:bl 1.5s infinite}@keyframes bl{50%{opacity:.2}}
+@media(max-width:780px){.wrap{flex-direction:column;padding:10px 10px 84px}
+nav{position:fixed;z-index:6;left:0;right:0;bottom:0;top:auto;width:auto;flex-direction:row;overflow-x:auto;padding:8px 8px calc(8px + env(safe-area-inset-bottom,0px));background:var(--panel);border-top:2px solid var(--red)}
+nav button{flex:none;white-space:nowrap;border-left-width:1px}nav button.on,nav button:hover{transform:none}.logo{font-size:12px}}
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas><div id="vig"></div>
+<div id="intro"><p id="it"></p><small>TAP OR PRESS ANY KEY</small></div>
+<header class="hud">
+ <div class="logo">RUDRA<b>&#10013;</b>SHARMA</div>
+ <div class="xp"><small>RANK <span id="lv">1</span> &middot; CASE FILE <span id="xpt">0</span>%</small><div class="bar"><i id="xpb"></i></div></div>
+ <button class="btn" id="snd" title="Sound">SOUND</button>
+ <button class="btn" id="th" title="Day or night">DAY</button>
+</header>
+<div class="wrap">
+<nav id="nav"></nav>
+<main>
+<section id="about"><h2><small>CHAPTER I</small>The Subject</h2><p class="sub">Every story has a monster. Mine just happens to train neural networks.</p>
+ <h1 class="glitch" data-t="RUDRA SHARMA"><svg class="sword" viewBox="0 0 22 70"><path fill="currentColor" d="M9 0h4v18h9v6h-9v34l-2 12-2-12V24H0v-6h9z"/></svg>RUDRA SHARMA</h1>
+ <dl class="facts"><dt>ROLE</dt><dd>AI &amp; ML Engineering Student, 2nd Year</dd><dt>ACADEMY</dt><dd>Acropolis Institute of Technology and Research, Indore</dd><dt>CGPA</dt><dd>7.0</dd><dt>STATUS</dt><dd>SIH 2026 selected &middot; hackathon winner &middot; always building</dd></dl>
+ <p>I build things that predict, navigate and decide, and I care about the people who use them. Strong communicator, calm under deadlines, and happiest when a messy problem finally clicks into place.</p>
+ <button class="btn" onclick="go(2)">OPEN THE CASES &rarr;</button></section>
+
+<section id="skills"><h2><small>CHAPTER II</small>The Arsenal</h2><p class="sub">Tools sharpened in classrooms, hackathons and late nights.</p>
+ <div class="grid"><div>
+  <div class="skill"><div><span>C++</span><span>STRONG</span></div><div class="bar"><i data-w="82"></i></div></div>
+  <div class="skill"><div><span>PYTHON</span><span>STRONG</span></div><div class="bar"><i data-w="85"></i></div></div>
+  <div class="skill"><div><span>C</span><span>SOLID</span></div><div class="bar"><i data-w="72"></i></div></div>
+  <div class="skill"><div><span>FASTAPI</span><span>SOLID</span></div><div class="bar"><i data-w="75"></i></div></div>
+  <div class="skill"><div><span>POSTGRESQL</span><span>SOLID</span></div><div class="bar"><i data-w="70"></i></div></div>
+  <div class="skill"><div><span>GIT &amp; GITHUB</span><span>SOLID</span></div><div class="bar"><i data-w="78"></i></div></div></div>
+  <div class="card"><h3>SOFT SKILLS</h3><p>Communication, teamwork, leadership under pressure and quick learning.</p><span class="tag">Teamwork</span><span class="tag">Presenting</span><span class="tag">Problem solving</span><span class="tag">Adaptable</span></div></div></section>
+
+<section id="projects"><h2><small>CHAPTER III</small>The Cases</h2><p class="sub">Two investigations, both live on the web.</p>
+ <div class="grid">
+  <div class="card"><span class="stamp">LIVE</span><h3>DELHI AQI FORECASTING</h3><p>A forecasting system that predicts air quality in Delhi so people can plan around the smog.</p><span class="tag">Python</span><span class="tag">ML</span><span class="tag">Forecasting</span><br><br><a class="btn" href="https://delhi-aqi-forecasting.netlify.app" target="_blank" rel="noopener">OPEN CASE</a></div>
+  <div class="card"><span class="stamp">LIVE</span><h3>CAMPUS NAVIGATION</h3><p>A navigation app that guides students and visitors across the college campus without getting lost.</p><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">PostgreSQL</span><br><br><a class="btn" href="https://campnavigation.netlify.app" target="_blank" rel="noopener">OPEN CASE</a></div>
+  <div class="card"><span class="stamp">CLASSIFIED</span><h3>NEXT CASE</h3><p>The next project is still being written. Check GitHub for what is in progress.</p><br><a class="btn" href="https://github.com/rudrasharma0210" target="_blank" rel="noopener">GITHUB</a></div>
+ </div></section>
+
+<section id="quest"><h2><small>CHAPTER IV</small>The Timeline</h2><p class="sub">How the story has unfolded so far.</p>
+ <div class="tl">
+  <div class="card"><h3>SMART INDIA HACKATHON 2026</h3><p>Selected to compete in SIH 2026, the national stage.</p></div>
+  <div class="card"><h3>COLLEGE HACKATHONS</h3><p>Won multiple minor hackathons by shipping working prototypes under time pressure.</p></div>
+  <div class="card"><h3>B.TECH, 2ND YEAR</h3><p>Acropolis Institute of Technology and Research, Indore &middot; CGPA 7.0.</p></div>
+ </div></section>
+
+<section id="badges"><h2><small>CHAPTER V</small>The Evidence</h2><p class="sub">Proof of work, filed and ready.</p>
+ <div class="badges">
+  <div class="badge"><div class="e">&#127942;</div><b>SIH 2026</b><small>Selected</small></div>
+  <div class="badge"><div class="e">&#129351;</div><b>HACKATHON WINS</b><small>College level</small></div>
+  <div class="badge"><div class="e">&#128260;</div><b>NVIDIA AI COURSE</b><small>Certified</small></div>
+  <div class="badge"><div class="e">&#128187;</div><b>HP AI COURSE</b><small>Certified</small></div>
+  <div class="badge"><div class="e">&#128209;</div><b>DSA IN C++</b><small>Certified</small></div>
+ </div><p style="text-align:center;margin-top:18px"><a class="btn" href="https://drive.google.com/drive/folders/1BxDHnUmccjKdMdlk2CjnjbSRJD5bb_P5" target="_blank" rel="noopener">VIEW ALL CERTIFICATES</a></p></section>
+
+<section id="arcade"><h2><small>CHAPTER VI</small>The Chase</h2>
+ <p class="sub">Collect the glowing memory pages. Something is following you, and it learns. Arrow keys / WASD, or drag on mobile.</p>
+ <canvas id="g" width="520" height="320"></canvas>
+ <p>Pages: <b id="sc">0</b> &middot; Best: <b id="best">0</b> &nbsp; <button class="btn" id="go">BEGIN</button></p></section>
+
+<section id="contact"><div class="boss"><h2><small>FINAL CHAPTER</small>The Confrontation</h2>
+ <p class="sub">Break through the wall of silence. Every strike is a hello.</p>
+ <div class="bar"><i id="hp"></i></div>
+ <div class="links">
+  <a class="btn" data-hit href="mailto:rudra7sharma.7777@gmail.com">EMAIL</a>
+  <a class="btn" data-hit target="_blank" rel="noopener" href="https://www.linkedin.com/in/rudra-sharma-90a369381">LINKEDIN</a>
+  <a class="btn" data-hit target="_blank" rel="noopener" href="https://github.com/rudrasharma0210">GITHUB</a>
+  <a class="btn" data-hit target="_blank" rel="noopener" href="https://leetcode.com/u/t0OYqgIGsu/">LEETCODE</a>
+  <a class="btn" data-hit target="_blank" rel="noopener" href="https://www.hackerrank.com/profile/rudra7sharma_771">HACKERRANK</a>
+ </div></div></section>
+</main></div>
+<div class="toast" id="toast"></div>
+<script>
+const S=[["about","I","The Subject"],["skills","II","The Arsenal"],["projects","III","The Cases"],["quest","IV","The Timeline"],["badges","V","The Evidence"],["arcade","VI","The Chase"],["contact","VII","Confrontation"]];
+let xp=0,lv=1,seen={},muted=false,AC,dark=true;const $=id=>document.getElementById(id);
+function beep(f=300,d=.2,t="triangle",v=.06){if(muted)return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();const o=AC.createOscillator(),g=AC.createGain();o.type=t;o.frequency.value=f;g.gain.value=v;o.connect(g);g.connect(AC.destination);o.start();g.gain.exponentialRampToValueAtTime(.0001,AC.currentTime+d);o.stop(AC.currentTime+d)}catch(e){}}
+function toast(m){const t=$("toast");t.textContent=m;t.classList.add("s");setTimeout(()=>t.classList.remove("s"),2000)}
+function addXP(n){xp+=n;if(xp>=100){xp-=100;lv++;toast("RANK "+lv+" REACHED");[220,262,330].forEach((f,i)=>setTimeout(()=>beep(f,.4),i*160))}$("lv").textContent=lv;$("xpt").textContent=xp;$("xpb").style.width=xp+"%"}
+const nav=$("nav");S.forEach(([id,r,n],i)=>{const b=document.createElement("button");b.innerHTML="<b>"+r+"</b>"+n.toUpperCase();b.onclick=()=>go(i);nav.appendChild(b)});
+function go(i){S.forEach(([id],j)=>{$(id).classList.toggle("on",i===j);nav.children[j].classList.toggle("on",i===j)});beep(180+i*30,.25);if(!seen[i]){seen[i]=1;addXP(14)}
+ document.querySelectorAll("#"+S[i][0]+" .bar i[data-w]").forEach(e=>{e.style.width="0";setTimeout(()=>e.style.width=e.dataset.w+"%",60)});
+ if(S[i][0]==="contact")$("hp").style.width="100%";scrollTo({top:0,behavior:"smooth"})}
+addEventListener("keydown",e=>{if(/^[1-7]$/.test(e.key)&&!game.on&&$("intro").classList.contains("out"))go(+e.key-1)});
+$("snd").onclick=e=>{muted=!muted;e.target.textContent=muted?"MUTED":"SOUND";beep()};
+$("th").onclick=e=>{dark=!dark;document.documentElement.dataset.theme=dark?"dark":"light";e.target.textContent=dark?"DAY":"NIGHT";beep(500,.2)};
+document.querySelectorAll("[data-hit]").forEach(a=>a.addEventListener("click",()=>{const h=$("hp");h.style.width=Math.max(0,parseFloat(h.style.width)-20)+"%";beep(90,.3,"sawtooth",.1);document.body.classList.add("shake");setTimeout(()=>document.body.classList.remove("shake"),300);addXP(6)}));
+addEventListener("pointermove",e=>{const v=$("vig").style;v.setProperty("--mx",e.clientX+"px");v.setProperty("--my",e.clientY+"px");mx=e.clientX/innerWidth-.5});
+/* intro */
+const lines=["There is a monster in every story.","Some hide in the dark.","This one writes code.","Rudra Sharma. The case file is open."];let li=0,ci=0,tm;
+function type(){const el=$("it");if(li>=lines.length){setTimeout(enter,900);return}const L=lines[li];if(ci<=L.length){el.textContent=L.slice(0,ci++);if(ci%3===0)beep(1400,.02,"square",.015);tm=setTimeout(type,55)}else{li++;ci=0;tm=setTimeout(type,900)}}
+function enter(){$("intro").classList.add("out");beep(110,1,"sawtooth",.08);go(0)}
+$("intro").onclick=enter;addEventListener("keydown",()=>{if(!$("intro").classList.contains("out"))enter()},{once:true});type();
+/* skyline + neural constellation */
+const bg=$("bg"),bx=bg.getContext("2d");let W,H,L,N,mx=0,T=0;
+function rs(){W=bg.width=innerWidth;H=bg.height=innerHeight;
+ L=[0,1,2].map(i=>{let x=-60,a=[];while(x<W+120){const w=46+Math.random()*80,h=H*(.1+.07*i+.13*Math.random()),c=Math.max(1,w/17|0),r=Math.max(1,h/24|0);a.push({x,w,h,rh:w*(.35+Math.random()*.5),c,r,l:Array.from({length:c*r},()=>Math.random()<.22-i*.03?Math.random():-1)});x+=w+Math.random()*6}return a});
+ N=Array.from({length:Math.min(46,W/24|0)},()=>({x:Math.random()*W,y:Math.random()*H*.55,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.2}))}
+rs();addEventListener("resize",rs);
+function frame(){T++;const D=dark,g=bx.createLinearGradient(0,0,0,H);
+ g.addColorStop(0,D?"#0b0605":"#cdb98f");g.addColorStop(.7,D?"#3a1d14":"#e9cf9a");g.addColorStop(1,D?"#6a3520":"#f3dcaa");bx.fillStyle=g;bx.fillRect(0,0,W,H);
+ bx.fillStyle=D?"rgba(210,168,90,.9)":"rgba(255,245,210,.9)";bx.beginPath();bx.arc(W*.8,H*.2,26,0,7);bx.fill();
+ bx.strokeStyle=bx.fillStyle=D?"#d2a85a":"#6b4a1c";
+ N.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H*.55)p.vy*=-1;bx.globalAlpha=.55;bx.fillRect(p.x-1.5,p.y-1.5,3,3)});
+ for(let i=0;i<N.length;i++)for(let j=i+1;j<N.length;j++){const d=Math.hypot(N[i].x-N[j].x,N[i].y-N[j].y);if(d<120){bx.globalAlpha=.22*(1-d/120);bx.beginPath();bx.moveTo(N[i].x,N[i].y);bx.lineTo(N[j].x,N[j].y);bx.stroke()}}
+ L.forEach((ly,i)=>{const col=D?["#1c0f0b","#150b08","#0d0605"][i]:["#b89a6a","#9b7c52","#7a5d3a"][i],ox=-mx*(10+i*16);
+  ly.forEach(b=>{const x=b.x+ox,y=H-b.h;bx.globalAlpha=1;bx.fillStyle=col;bx.fillRect(x,y,b.w,b.h);bx.beginPath();bx.moveTo(x-3,y);bx.lineTo(x+b.w/2,y-b.rh);bx.lineTo(x+b.w+3,y);bx.fill();
+   b.l.forEach((v,k)=>{if(v<0)return;if(Math.random()<.0004)b.l[k]=Math.random();const cx=x+6+(k%b.c)*(b.w-10)/b.c,cy=y+8+(k/b.c|0)*22;bx.fillStyle="rgba(255,196,100,"+(.35+.5*v)+")";bx.fillRect(cx,cy,6,10)})})});
+ bx.globalAlpha=.18;bx.strokeStyle=D?"#cbb89a":"#4b3626";bx.lineWidth=1;bx.beginPath();for(let k=0;k<45;k++){const x=(k*97+T*3)%W,y=(k*53+T*14)%H;bx.moveTo(x,y);bx.lineTo(x-3,y+14)}bx.stroke();bx.globalAlpha=1;requestAnimationFrame(frame)}frame();
+/* the chase */
+const cv=$("g"),c=cv.getContext("2d"),game={on:false},keys={};let pl,pg,ch,sc,best=0,fr;
+addEventListener("keydown",e=>{keys[e.key.toLowerCase()]=1;if(game.on&&e.key.startsWith("Arrow"))e.preventDefault()});addEventListener("keyup",e=>keys[e.key.toLowerCase()]=0);
+cv.addEventListener("pointermove",e=>{if(!game.on)return;const r=cv.getBoundingClientRect();pl.x=(e.clientX-r.left)*520/r.width;pl.y=(e.clientY-r.top)*320/r.height});
+function start(){pl={x:260,y:260};pg=[];ch=[{x:30,y:30}];sc=0;fr=0;game.on=true;$("sc").textContent=0;$("go").textContent="AGAIN";loopG()}$("go").onclick=start;
+function loopG(){if(!game.on)return;fr++;const s=3.4;if(keys.arrowleft||keys.a)pl.x-=s;if(keys.arrowright||keys.d)pl.x+=s;if(keys.arrowup||keys.w)pl.y-=s;if(keys.arrowdown||keys.s)pl.y+=s;
+ pl.x=Math.max(10,Math.min(510,pl.x));pl.y=Math.max(10,Math.min(310,pl.y));
+ if(fr%50===0&&pg.length<5)pg.push({x:20+Math.random()*480,y:20+Math.random()*280});
+ c.fillStyle="rgba(10,6,5,.35)";c.fillRect(0,0,520,320);c.fillStyle="#0a0605";c.fillRect(0,0,520,320);
+ const g=c.createRadialGradient(pl.x,pl.y,10,pl.x,pl.y,150);g.addColorStop(0,"rgba(210,168,90,.35)");g.addColorStop(1,"transparent");c.fillStyle=g;c.fillRect(0,0,520,320);
+ c.fillStyle="#d2a85a";c.fillRect(pl.x-8,pl.y-8,16,16);
+ pg=pg.filter(p=>{c.fillStyle="#efe3cc";c.fillRect(p.x-7,p.y-9,14,18);c.fillStyle="#c0281f";c.fillRect(p.x-4,p.y-5,8,2);if(Math.hypot(p.x-pl.x,p.y-pl.y)<16){sc++;$("sc").textContent=sc;beep(660,.12,"sine");if(sc%5===0)ch.push({x:Math.random()<.5?0:520,y:Math.random()*320});return false}return true});
+ const sp=.9+sc*.04;for(const m of ch){const a=Math.atan2(pl.y-m.y,pl.x-m.x);m.x+=Math.cos(a)*sp;m.y+=Math.sin(a)*sp;c.fillStyle="#000";c.fillRect(m.x-11,m.y-20,22,40);c.fillStyle="#c0281f";c.fillRect(m.x-6,m.y-12,4,3);c.fillRect(m.x+2,m.y-12,4,3);
+  if(Math.hypot(m.x-pl.x,m.y-pl.y)<18){game.on=false;best=Math.max(best,sc);$("best").textContent=best;beep(70,.6,"sawtooth",.12);addXP(Math.min(30,sc*3));toast("CAUGHT. "+sc+" PAGES RECOVERED");c.fillStyle="#c0281f";c.font="700 30px Cinzel,serif";c.textAlign="center";c.fillText("HE FOUND YOU",260,165);return}}
+ requestAnimationFrame(loopG)}
+</script>
+</body>
+</html>
